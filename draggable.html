@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nert Changes</title>
-    <link  href="styles/vendor/cropper.css" rel="stylesheet">
+    <title>Draggable</title>
+    <link rel="stylesheet" href="styles/custom/draggable.css">
 </head>
 <body>
 
-<section>
-    <canvas id="demoCanvas" width="600" height="600" ></canvas>
+<!--<section class="demoUpload">-->
+    <!--<canvas id="demoCanvas" width="600" height="600"></canvas>-->
+<!--</section>-->
+<section class="demoCrop">
+    <canvas id="cropCanvas" width="600" height="600"></canvas>
+    <input type="radio" name="action" value="draw" checked> draw
+    <input type="radio" name="action" value="erase" id="erase"> erase
 </section>
 
 <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
