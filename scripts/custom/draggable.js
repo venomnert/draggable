@@ -19,7 +19,7 @@ function init () {
     //Add the image and shape into the container as a child
     cont.addChild(testImg, art);
 
-    //Cache the displayed objects(image and art) in an area that is 600px X 400px
+    //Cache(save) the displayed objects(image and art) in an area that is 600px X 400px
     cont.cache(0,0,600,400);
 
     //Do the following when the image is loaded
@@ -55,21 +55,38 @@ function init () {
         draw(evt); // draw the initial dot
     }
     function draw(evt) {
-        art.graphics.ss(20,1).s(color).mt(x,y).lt(evt.stageX, evt.stageY);
+
+        art.graphics
+            .ss(7,1) //this controls the drawing lines width and shape
+            .s(color) //this sets the color for the 'draw' line
+            .mt(x,y)  //Moves the drawing point to certain x , y coordinate
+            .lt(evt.stageX, evt.stageY);  //Moves the point from the starting point to the given x , y coordinate.
+                                             //When the left mouse is clicked the point will be drawn from mt(x,y) to lt(x,y).
+                                             //As you continue to move the mouse the the above pattern will start again from where the mouse is
+
 
         // the composite operation is the secret sauce.
         // we'll either draw or erase what the user drew.
         cont.updateCache(erase.checked ? "destination-out" : "source-over");
 
-        art.graphics.clear();
-        x = evt.stageX;
-        y = evt.stageY;
-        stage.update();
+        art.graphics.clear(); //Reset the drawing instance
+        x = evt.stageX; //The x now become the last place the mouse is. So when the mouse mt(x) is where the mouse was.
+        y = evt.stageY; //Same us above but for y
+        stage.update(); //Re-render the canvas to the above changes can take effect
     }
     function endDraw(evt) {
+        //Remove the mouse event listener when the moust is lifted off the canvas
+        //?? What is the difference between stage.off and evt.remove()
         stage.off("stagemousemove", listener);
+
+        //?? I don't know what this line does
+        console.log('event', evt);
         evt.remove();
     }
+
+
+
+
 
     //Retreive the canvas element
     // var stage = new createjs.Stage("demoCanvas");
