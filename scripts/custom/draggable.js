@@ -84,10 +84,6 @@ function init () {
         evt.remove();
     }
 
-
-
-
-
     //Retreive the canvas element
     // var stage = new createjs.Stage("demoCanvas");
     //Wrap the uploaded image
