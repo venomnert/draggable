@@ -50,7 +50,7 @@ function init () {
         stage.on("stagemouseup", endDraw, this);
 
         color = c.Graphics.getHSL(hue+=85, 50, 50);
-        x = evt.stageX-0.001; // offset so we draw an initial dot
+        x = evt.stageX-0.001; // This prevents the connecting dot effect
         y = evt.stageY-0.001;
         draw(evt); // draw the initial dot
     }
@@ -72,15 +72,15 @@ function init () {
         art.graphics.clear(); //Reset the drawing instance
         x = evt.stageX; //The x now become the last place the mouse is. So when the mouse mt(x) is where the mouse was.
         y = evt.stageY; //Same us above but for y
-        stage.update(); //Re-render the canvas to the above changes can take effect
+        stage.update(); //Re-render the canvas, so the above changes can take effect
     }
     function endDraw(evt) {
         //Remove the mouse event listener when the moust is lifted off the canvas
         //?? What is the difference between stage.off and evt.remove()
         stage.off("stagemousemove", listener);
 
-        //?? I don't know what this line does
-        console.log('event', evt);
+        //Remove the mouse up event listener
+        //??I don't know why this is necessary
         evt.remove();
     }
 
