@@ -3,12 +3,11 @@ window.onload = function() {
 };
 
 function init () {
-    var rangeInput = document.getElementById('brushSize');
-
     var c = createjs, stage, art, testImg, cont;
     var x, y, listener, color, hue=0;
     var cropBrush;
-    var brushSize = parseInt(document.getElementById('brushSize').value, 10);
+    var rangeInput = document.getElementById('brushSize');
+    var brushSize = parseInt(rangeInput.value, 10);
 
     //Get the canvas and wrap it
     stage = new c.Stage('cropCanvas');
@@ -50,9 +49,19 @@ function init () {
         brushSize = parseInt(e.target.value, 10);
         setBrushSize(brushSize);
     });
+    document.getElementById('cropChoiceON').addEventListener('change', function (e) {
+        cont.addChild(art);
+        stage.addChild(cropBrush);
+        stage.update();
+    });
+    document.getElementById('cropChoiceOff').addEventListener('change', function (e) {
+        cont.removeChild(art);
+        stage.removeChild(cropBrush);
+        stage.update();
+    });
 
     function setBrushSize() {
-        console.log('size', brushSize*0.45);
+        // console.log('size', brushSize*0.45);
         cropBrush.graphics.clear();
         cropBrush.graphics.s("black").f("black").dc(50, 550, brushSize * 0.45);
         stage.update();
@@ -72,7 +81,6 @@ function init () {
         draw(evt); // draw the initial dot
     }
     function draw(evt) {
-
         art.graphics
             .ss(brushSize, 1) //this controls the drawing lines width and shape
             .s(color) //this sets the color for the 'draw' line
@@ -84,7 +92,7 @@ function init () {
 
         // the composite operation is the secret sauce.
         // we'll either draw or erase what the user drew.
-        cont.updateCache(erase.checked ? "destination-out" : "source-over");
+        cont.updateCache("destination-out" );
 
         art.graphics.clear(); //Reset the drawing instance
         x = evt.stageX; //The x now become the last place the mouse is. So when the mouse mt(x) is where the mouse was.
@@ -100,7 +108,6 @@ function init () {
         //??I don't know why this is necessary
         evt.remove();
     }
-
 
     //Retreive the canvas element
     // var stage = new createjs.Stage("demoCanvas");

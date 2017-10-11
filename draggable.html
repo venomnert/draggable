@@ -9,15 +9,24 @@
 </head>
 <body>
 
-<!--<section class="demoUpload">-->
-    <!--<canvas id="demoCanvas" width="600" height="600"></canvas>-->
-<!--</section>-->
 <section class="demoCrop">
     <canvas id="cropCanvas" width="600" height="600"></canvas>
 
     <form>
-        <input type="radio" name="action" value="erase" id="erase"> erase
-        <input type="range" min="5" max="30" step="1" id="brushSize">Brush Size
+        <div class="cropCheck">
+            <input type="radio" id="cropChoiceOff"
+                   name="crop" value="false">
+            <label for="cropChoiceOff">Off</label>
+
+            <input type="radio" id="cropChoiceON"
+                   name="crop" value="true">
+            <label for="cropChoiceON">Crop</label>
+        </div>
+
+        <label class="brush">
+            Brush Size
+            <input type="range" min="5" max="30" step="1" id="brushSize">
+        </label>
     </form>
 </section>
 <section class="edit-tools">
