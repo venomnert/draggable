@@ -2,24 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Draggable</title>
     <link rel="stylesheet" href="styles/custom/draggable.css">
 <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-<!--<section class="demoUpload">-->
-    <!--<canvas id="demoCanvas" width="600" height="600"></canvas>-->
-<!--</section>-->
 <section class="demoCrop">
     <canvas id="cropCanvas" width="600" height="600"></canvas>
-    <input type="radio" name="action" value="draw" checked> draw
-    <input type="radio" name="action" value="erase" id="erase"> erase
+
+    <form>
+        <div class="cropCheck">
+            <input type="radio" id="cropChoiceOff"
+                   name="crop" value="false">
+            <label for="cropChoiceOff">Off</label>
+
+            <input type="radio" id="cropChoiceON"
+                   name="crop" value="true">
+            <label for="cropChoiceON">Crop</label>
+        </div>
+
+        <label class="brush">
+            Brush Size
+            <input type="range" min="5" max="30" step="1" id="brushSize">
+        </label>
+    </form>
+</section>
+<section class="edit-tools">
+    <div class="edit-tools__crop-brush"></div>
 </section>
 
- <input type='file' onchange="readURL(this);" accept= "jpg, .jpeg, .png" multiple/>
+<div class="upload-images">
+    <input type='file' onchange="readURL(this);" accept= "jpg, .jpeg, .png" multiple/>
     <img id="blah" src="#" alt="your image" />
-
+</div>
 
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
