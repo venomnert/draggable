@@ -109,29 +109,36 @@ function init () {
         evt.remove();
     }
 
-    //Retreive the canvas element
-    // var stage = new createjs.Stage("demoCanvas");
-    //Wrap the uploaded image
-    // var bitmap = new createjs.Bitmap("./images/blue_oxford_520_520.jpg");
-    //When the image is loaded, add the image to canvas and update it.
-    // bitmap.image.onload = function() {
-    //     console.log(bitmap);
-    //     stage.addChild(bitmap);
-    //     stage.update();
-    // };
+//    Retreive the canvas element
+     var stage = new createjs.Stage("demoCanvas");
+//    Wrap the uploaded image
+     var bitmap = new createjs.Bitmap("./images/blue_oxford_520_520.jpg");
+//    When the image is loaded, add the image to canvas and update it.
+     bitmap.image.onload = function() {
+         console.log(bitmap);
+         stage.addChild(bitmap);
+         stage.update();
+     };
 }
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result)
-                .width(350)
-                .height(350);
-        };
+// Portfolio image loader
+var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
+var canvas = document.getElementById('imageCanvas');
+var ctx = canvas.getContext('2d');
 
-        reader.readAsDataURL(input.files[0]);
+// loads portfolio image onto canvas 
+function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img,0,0);
+        }
+        img.src = event.target.result;
     }
-}
+    reader.readAsDataURL(e.target.files[0]);     
+};

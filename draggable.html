@@ -32,16 +32,16 @@
 <section class="edit-tools">
     <div class="edit-tools__crop-brush"></div>
 </section>
-
+    
+    
+<!--Uploads cloths image-->
 <div class="upload-images">
-    <input type='file' onchange="readURL(this);" accept= "jpg, .jpeg, .png" multiple/>
-    <img id="blah" src="#" alt="your image" />
+    <label>Image File:</label><br/>
+<input type="file" id="imageLoader" name="imageLoader" accept='image/*' multiple/>
+<canvas id="imageCanvas" width="600" height="600"></canvas>
+    
 </div>
-
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-<script src="scripts/custom/draggable.js"></script>
+ <script src="scripts/custom/draggable.js"></script>     
 </body>
 </html>
 
