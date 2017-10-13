@@ -4,3 +4,9 @@ img {
 canvas {
     background: #a3a3a3;
 }
+
+/* Portfolio canvas */
+#canvas {
+  border: 1px solid black;
+  margin-top: 10px;
+}
